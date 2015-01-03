@@ -1,0 +1,18 @@
+// index.html.jade
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    title My Blog
+  body
+    h1 My Blog
+    h2 Post List
+    ul.posts
+      each post in getCollection('html').findAll({layout: 'post'}).toJSON()
+        li.post
+          a(href='./#{post.url}')= post.title
+    h2 Tag List
+    ul.tags
+      each tag in getFilesAtPath('tags/').toJSON()
+        li.tag
+          a(href='./#{tag.url}')= tag.title

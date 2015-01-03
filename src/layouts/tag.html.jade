@@ -1,0 +1,13 @@
+// tag.html.jade
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    title= document.tag
+  body
+    h1 My Blog
+    h2 Post List in #{document.tag}
+    ul.posts
+      each post in getCollection('html').findAll({layout: 'post', tags: {$in: document.tag}}).toJSON()
+        li.post
+          a(href='./#{post.url}')= post.title
